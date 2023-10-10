@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View,Text} from 'react-native';
 import {styles} from './style';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '../../../components/button'
 import AuthHeader from '../../../components/authheader/index'
@@ -9,31 +10,37 @@ import Seperator from '../../../components/seperator';
 import GoogleLogin from '../../../components/googleLogin';
 
 
-const SignIn=()=>{
+const SignIn=({navigation})=>{
 
     const [isChecked,setIsChecked]=useState(false);
 
-    const handleSignIn=()=>console.log('sign in')
+    const handleSignUp=()=>navigation.navigate('Signup');
+
+    const handleBack=()=>{
+        navigation.goBack()
+    }
 
     return (
-        <View style={styles.container}>
-            <AuthHeader title="Sign In"/>
+        <SafeAreaView>
+            <View style={styles.container}>
+                <AuthHeader onBackPress={handleBack} title="Sign In"/>
 
-            <Input label='Email' placeholder='example@poop.com'/>
-            <Input label='Password' placeholder='*******' isPassword/>
+                <Input label='Email' placeholder='example@poop.com'/>
+                <Input label='Password' placeholder='*******' isPassword/>
 
 
-            <Button title='Sign In' customStyle={styles.buttonMods}/>
+                <Button title='Sign In' customStyle={styles.buttonMods}/>
 
-            <Seperator text="Or sign in with"/>
+                <Seperator text="Or sign in with"/>
 
-            <GoogleLogin/>
+                <GoogleLogin/>
 
-            <Text style={styles.footerText}>
-                Don't have an account?
-                <Text onPress={handleSignIn} style={styles.footerLink}> Sign Up</Text>
-            </Text>
-        </View>
+                <Text style={styles.footerText}>
+                    Don't have an account?
+                    <Text onPress={handleSignUp} style={styles.footerLink}> Sign Up</Text>
+                </Text>
+            </View>
+        </SafeAreaView>
     );
 }
 

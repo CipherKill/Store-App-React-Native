@@ -4,7 +4,18 @@ import {styles} from './style';
 
 import Button from '../../../components/button';
 
-const Splash = () => {
+const Splash = ({navigation}) => {
+
+    const handleSignUp=()=>{
+        navigation.navigate('Signup');
+    }
+
+    const handleSignIn=()=>{
+        navigation.navigate('Signin');
+    }
+
+
+
     return (
         <View style={styles.container}>
             <Image resizeMode="contain" style={styles.image} source={require("../../../assets/splash_image.png")}/>
@@ -14,8 +25,9 @@ const Splash = () => {
                 <Text style={styles.title}>here</Text>
             </View>
 
-            <Button title='Sign Up'/>
-            <Pressable hitSlop={20}>
+            <Button onPress={handleSignUp} title='Sign Up'/>
+            
+            <Pressable hitSlop={20} onPress={handleSignIn}>
                 <Text style={styles.footerText}>Sign In</Text>
             </Pressable>
         </View>
