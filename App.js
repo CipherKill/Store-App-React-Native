@@ -12,7 +12,7 @@ import Favorites from './src/screens/app/Favorites';
 import Home from './src/screens/app/Home';
 import Profile from './src/screens/app/Profile';
 import { colors } from './src/utils/colors';
-
+import ProductDetails from './src/screens/app/ProductDetails';
 
 const Stack=createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,12 +43,13 @@ const Tabs=()=>(
       tabBarStyle:{
         borderTopColor:colors.lightGrey,
         backgroundColor:'white'
-      }
+      },
+      initialRouteName:'Home'
 
     })}>
-      <Tab.Screen name="Profile" component={Profile}/>
       <Tab.Screen name="Home" component={Home}/>
       <Tab.Screen name="Favorites" component={Favorites}/>
+      <Tab.Screen name="Profile" component={Profile}/>
     </Tab.Navigator>
 )
 
@@ -71,6 +72,7 @@ const App=()=>{
           {isSignedIn?(
             <>
               <Stack.Screen name="Tabs" component={Tabs} options={{headerShown:false}}/>
+              <Stack.Screen name="ProductDetails" component={ProductDetails} options={{headerShown:false}}/>
             </>
 
           ):(
